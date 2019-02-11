@@ -15,7 +15,7 @@ const app = new Koa();
 //控制是否启用mongodb
 if (config.db.useMongodb) {
   mongoDb.start(function() {
-    console.log("hahah");
+    console.log("mongodb数据库连接成功!");
   });
 }
 
