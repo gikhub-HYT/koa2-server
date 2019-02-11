@@ -1,13 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 function resolve(dir) {
   return path.join(__dirname, "../../" + dir);
 }
 
-// 添加控制器
+// 注册数据模型
 function registerModels(modulesPath) {
   let startTime = new Date();
   let basePath = resolve(modulesPath);
@@ -19,21 +18,20 @@ function registerModels(modulesPath) {
     let model_js_files = files.filter(f => {
       return f.endsWith("model.js");
     });
-    console.log("model", model_js_files);
+    // console.log("model", model_js_files);
     for (let js_file of model_js_files) {
-      let modelObj = require(dirPath + "/" + js_file);
-      let modelName = Object.keys(modelObj)[0];
-      mongoose.model(modelName, modelObj[modelName]);
-      // console.log("modelObj", modelObj[modelName]);
+      let modelName = js_file.replace(".model.js", "").trim();
+      let schema = require(dirPath + "/" + js_file);
+      mongoose.model(modelName, schema);
     }
   }
-  console.log("spend", new Date() - startTime, "for load models");
+  console.warn("spend", new Date() - startTime + "ms", "for load models");
 }
-
+//执行模型注入
 registerModels("modules");
 
 module.exports = {
-  $getMongoModel: function(modelName) {
+  getMongoModel: function(modelName) {
     return mongoose.model(modelName);
   }
 };
