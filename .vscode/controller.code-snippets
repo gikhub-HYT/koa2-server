@@ -7,7 +7,7 @@
       "  url: '$1',",
       "  method: 'get',",
       "  controller: async function(ctx, next) {",
-      "     $2 ",
+      "     $0 ",
       "  }",
       "};"
     ],
@@ -17,7 +17,7 @@
     "prefix": "ec",
     "body": [
       " ",
-      " exports.$1= {",
+      " exports.${controller_name}= {",
       "  url: '',",
       "  method: 'get',",
       "  controller: async function(ctx, next) {",
@@ -31,8 +31,14 @@
     "prefix": "cs",
     "body": [
       "const Schema = require('../../db/schema');",
-      "exports.$1Schema = new Schema({},{collection:'modelName$2'});"
+      "const ${modelName}Schema=new Schema({},{collection:'${modelName}s'})",
+      "module.exports= ${modelName}Schema ;"
     ],
     "description": "creat a mongo schema"
+  },
+  "get_mongo_model": {
+    "prefix": "gm",
+    "body": ["const ${modelName}Model =ctx.getMongoModel('${modelName}');"],
+    "description": "get_mongo_model"
   }
 }
