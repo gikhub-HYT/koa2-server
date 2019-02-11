@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "koaServer", //项目名称
+      name: "koa2Server", //项目名称
       cwd: "./", //应用的启动路径
       script: "src/app.js", //应用的启动文件
       exec_mode: "cluster", //可选值fork,cluster(开启集群模式实现负载均衡),默认fork
