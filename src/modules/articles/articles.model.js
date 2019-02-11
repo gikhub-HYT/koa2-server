@@ -1,5 +1,5 @@
 const Schema = require("../../db/schema");
-exports.loginSchema = new Schema(
+const articleSchema = new Schema(
   {
     title: {
       type: String
@@ -8,3 +8,5 @@ exports.loginSchema = new Schema(
   },
   { collection: "articles" }
 );
+
+module.exports = articleSchema;
