@@ -2,13 +2,13 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-11 12:58:35
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-02-11 21:28:04
+ * @LastEditTime: 2019-02-11 21:51:32
  * @Description: 用户模型
  */
 
 const Schema = require("../../db/schema");
 
-exports.userSchema = new Schema(
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -33,3 +33,5 @@ exports.userSchema = new Schema(
   },
   { collection: "users" }
 );
+
+module.exports = userSchema;
