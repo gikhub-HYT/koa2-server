@@ -1,0 +1,38 @@
+{
+  "module.exports_controller": {
+    "prefix": "mc",
+    "body": [
+      " ",
+      "module.exports = {",
+      "  url: '$1',",
+      "  method: 'get',",
+      "  controller: async function(ctx, next) {",
+      "     $2 ",
+      "  }",
+      "};"
+    ],
+    "description": "creat a controller "
+  },
+  "exports_controller ": {
+    "prefix": "ec",
+    "body": [
+      " ",
+      " exports.$1= {",
+      "  url: '',",
+      "  method: 'get',",
+      "  controller: async function(ctx, next) {",
+      " $2",
+      "  }",
+      "};"
+    ],
+    "description": "creat a controller "
+  },
+  "creat_a_schema": {
+    "prefix": "cs",
+    "body": [
+      "const Schema = require('../../db/schema');",
+      "exports.$1Schema = new Schema({},{collection:'modelName$2'});"
+    ],
+    "description": "creat a mongo schema"
+  }
+}

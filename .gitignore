@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+node_modules
+package-lock.json
+.idea
+# koa日志文件不提交
+server/logs
+# vue打包资源不提交
+server/static
+#开发日志不提交
+bin/logs
+logs
+
