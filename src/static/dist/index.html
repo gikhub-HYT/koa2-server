@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>koa2</title>
+    <style>
+      html,
+      body {
+        display: flex;
+        /* flex-direction: column; */
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        background-image: url("bg3.jpg");
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
+      .block {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        height: 40%;
+        margin: auto;
+        border-radius: 5px;
+        background: pink;
+      }
+
+      .show {
+        width: 25%;
+        height: 60%;
+        margin: auto;
+        border-radius: 5px;
+        background: pink;
+      }
+
+      .show div {
+        font-size: 18px;
+        margin: 10px;
+      }
+
+      .block .child {
+        display: flex;
+        text-justify: center;
+        /* align-items: center; */
+        height: 30%;
+        text-align: center;
+      }
+
+      .block .child .input {
+        width: 50%;
+        height: 25%;
+        margin: auto;
+        font-size: 20px;
+        font-weight: 600;
+        color: purple;
+        text-align: center;
+      }
+
+      .block .child .input input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 2px;
+      }
+
+      .block .child button {
+        width: 20%;
+        height: 40%;
+        margin: 50px auto;
+        outline: none;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        background: skyblue;
+        border: solid 1px lightgray;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="appCtrl">
+    <div class="show">
+      <div style="color: white">{{ msg }}</div>
+      <div ng-repeat="item in data">
+        姓名:{{ item.name }}&nbsp;年龄:{{ item.age }}
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="child">
+        <div class="input">
+          昵 称 <input type="text" ng-model="hero.name" />
+        </div>
+      </div>
+      <div class="child">
+        <div class="input">年龄 <input type="text" ng-model="hero.age" /></div>
+      </div>
+      <div class="child">
+        <button ng-click="add()">增 加</button>
+        <button ng-click="delete()">删 除</button>
+        <button ng-click="update()">修 改</button>
+        <button ng-click="search()">查 询</button>
+      </div>
+    </div>
+  </body>
+  <script src="./angular.js "></script>
+  <script>
+    var app = angular.module("app", []);
+
+    app.controller("appCtrl", [
+      "$scope",
+      "$http",
+      function($scope, $http) {
+        $scope.hero = {
+          name: "",
+          age: ""
+        };
+        $scope.add = function() {
+          var obj = {
+            name: "",
+            age: ""
+          };
+          $http
+            .post(
+              "user/add",
+              {
+                params: $scope.hero
+              },
+              {
+                headers: { Authorization: "authToken" }
+              }
+            )
+            .then(function(result) {
+              $scope.data = result.data.data;
+              $scope.msg = result.data.msg;
+              console.log("data", result);
+              $scope.hero = {
+                name: "",
+                age: ""
+              };
+            });
+        };
+        $scope.delete = function() {
+          console.log("condition", $scope.condition);
+          $http
+            .get("user/remove", {
+              params: $scope.hero
+            })
+            .then(function(result) {
+              $scope.data = result.data.data;
+              $scope.msg = result.data.msg;
+              console.log("data", result);
+            });
+        };
+        $scope.update = function() {
+          $http
+            .get("user/update", {
+              params: $scope.hero
+            })
+            .then(function(result) {
+              $scope.data = result.data.data;
+              $scope.msg = result.data.msg;
+              console.log("data", result);
+            });
+        };
+        $scope.search = function() {
+          $http
+            .get("user/search", {
+              params: $scope.hero
+            })
+            .then(function(result) {
+              $scope.data = result.data.data;
+              $scope.msg = result.data.msg;
+              console.log("data", result);
+            });
+        };
+        $scope.search();
+      }
+    ]);
+  </script>
+</html>
