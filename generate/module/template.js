@@ -3,23 +3,23 @@
  * @LastEditors: yongtian.hong
  * @Description: 模块模板
  * @Date: 2019-02-20 19:33:27
- * @LastEditTime: 2019-02-20 20:18:09
+ * @LastEditTime: 2019-02-21 19:49:34
  */
 const modelTemplate = function(moduleName) {
   return `
   const mongoose = require("mongoose");
   const Schema = mongoose.Schema;
-  const ${moduleName}Schema = new Schema({},{ collection: ${moduleName}});
-  module.exports = mongoose.model(${moduleName}, ${moduleName}Schema);
+  const ${moduleName}Schema = new Schema({},{ collection: "${moduleName}"});
+  module.exports = mongoose.model("${moduleName}", ${moduleName}Schema);
   `;
 };
 
 const controllerTemplate = function(moduleName) {
   return ` 
-  const ${moduleName}Service=require("./${moduleName}.serviice.js");
+  const ${moduleName}Service=require("./${moduleName}.service");
   exports.${moduleName} = {
-    url: "/${moduleName}",
-    method: "post",
+    path: "/",
+    method: "",
     controller: async function(ctx, next) {
       
     }

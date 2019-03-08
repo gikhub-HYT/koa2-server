@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2018-10-14 17:56:07
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-02-01 15:25:38
+ * @LastEditTime: 2019-02-13 01:05:51
  * @Description: 专门用于处理错误的中间件
  */
 
@@ -39,8 +39,8 @@ async function errorHandle(ctx, next) {
 }
 
 module.exports = function(app) {
-  app.on("error", function(error) {
-    console.log("捕获错误", error);
-  });
+  // app.on("error", function(error) {
+  //   console.log("捕获错误", error);
+  // });
   return errorHandle;
 };

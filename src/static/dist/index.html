@@ -89,9 +89,6 @@
   <body ng-controller="appCtrl">
     <div class="show">
       <div style="color: white">{{ msg }}</div>
-      <div ng-repeat="item in data">
-        姓名:{{ item.name }}&nbsp;年龄:{{ item.age }}
-      </div>
     </div>
 
     <div class="block">
@@ -104,10 +101,10 @@
         <div class="input">年龄 <input type="text" ng-model="hero.age" /></div>
       </div>
       <div class="child">
-        <button ng-click="add()">增 加</button>
-        <button ng-click="delete()">删 除</button>
-        <button ng-click="update()">修 改</button>
-        <button ng-click="search()">查 询</button>
+        <button ng-click="register()">注册</button>
+        <button ng-click="login()">登陆</button>
+        <button ng-click="logoff()">注销</button>
+        <button ng-click="modify()">修 改</button>
       </div>
     </div>
   </body>
@@ -123,21 +120,15 @@
           name: "",
           age: ""
         };
-        $scope.add = function() {
+        $scope.register = function() {
           var obj = {
             name: "",
             age: ""
           };
           $http
-            .post(
-              "user/add",
-              {
-                params: $scope.hero
-              },
-              {
-                headers: { Authorization: "authToken" }
-              }
-            )
+            .post("/api/user/register", $scope.hero, {
+              headers: { Authorization: "authToken" }
+            })
             .then(function(result) {
               $scope.data = result.data.data;
               $scope.msg = result.data.msg;
@@ -148,10 +139,9 @@
               };
             });
         };
-        $scope.delete = function() {
-          console.log("condition", $scope.condition);
+        $scope.login = function() {
           $http
-            .get("user/remove", {
+            .get("/api/user/login", {
               params: $scope.hero
             })
             .then(function(result) {
@@ -160,9 +150,9 @@
               console.log("data", result);
             });
         };
-        $scope.update = function() {
+        $scope.modify = function() {
           $http
-            .get("user/update", {
+            .get("/api/user/modify", {
               params: $scope.hero
             })
             .then(function(result) {
@@ -171,9 +161,9 @@
               console.log("data", result);
             });
         };
-        $scope.search = function() {
+        $scope.logoff = function() {
           $http
-            .get("user/search", {
+            .get("/api/user/logoff", {
               params: $scope.hero
             })
             .then(function(result) {
@@ -182,7 +172,6 @@
               console.log("data", result);
             });
         };
-        $scope.search();
       }
     ]);
   </script>

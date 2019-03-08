@@ -11,7 +11,8 @@
     "reload": "pm2 reload ./pm2.config.js",
     "stop": "pm2 stop ./pm2.config.js",
     "monit": "pm2 monit",
-    "kill": "pm2 kill"
+    "kill": "pm2 kill",
+    "new:module": "node ./generate/module/index.js"
   },
   "keywords": [
     "koa2",
@@ -38,6 +39,7 @@
     "winston-daily-rotate-file": "^3.5.1"
   },
   "devDependencies": {
+    "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "nodemon": "^1.18.7"
   }

@@ -30,15 +30,26 @@
   "creat_a_schema": {
     "prefix": "cs",
     "body": [
-      "const Schema = require('../../db/schema');",
+      "const mongoose = require('mongoose');",
+      "const Schema=mongoose.Schema",
       "const ${modelName}Schema=new Schema({},{collection:'${modelName}s'})",
-      "module.exports= ${modelName}Schema ;"
+      "mongoose.model('${modelName}',${modelName}Schema);"
     ],
     "description": "creat a mongo schema"
   },
-  "get_mongo_model": {
-    "prefix": "gm",
-    "body": ["const ${modelName}Model =ctx.getMongoModel('${modelName}');"],
-    "description": "get_mongo_model"
+  "creat_model_instance": {
+    "prefix": "ni",
+    "body": [
+      "const ${modelName} =ctx.createModelInstance('${modelName}',${newObj});"
+    ],
+    "description": "new a model instance"
+  },
+  "import_model": {
+    "prefix": "cm",
+    "body": [
+      "const mongoose = require('mongoose');",
+      "const ${modelName}Model=mongoose.model('${modelName}')"
+    ],
+    "description": "import a mongoModel"
   }
 }

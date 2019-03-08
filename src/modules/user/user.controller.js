@@ -2,15 +2,21 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-09 21:44:57
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-02-11 22:24:50
+ * @LastEditTime: 2019-02-21 09:22:04
  * @Description: 用户控制器
  */
+const userService = require("./user.service");
 
 //用户注册()
 exports.register = {
-  url: "",
-  method: "get",
-  controller: async function(ctx, next) {}
+  path: "/register",
+  method: "post",
+  controller: async function(ctx, next) {
+    const msg = await userService.register(ctx);
+    ctx.body = {
+      msg: msg
+    };
+  }
 };
 
 //  用户登陆
@@ -18,9 +24,9 @@ exports.login = {
   url: "/login",
   method: "get",
   controller: async function(ctx, next) {
-    let userModel = ctx.getMongoModel("user");
-    // const uModel = ctx.getMongoModel("");
-    console.log("userModel", userModel);
-    ctx.body = "userModel";
+    // ctx.model("user").find;
+    ctx.body = {
+      msg: "登陆成功!"
+    };
   }
 };

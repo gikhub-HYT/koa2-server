@@ -2,23 +2,16 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-06 23:23:49
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-02-11 13:27:36
+ * @LastEditTime: 2019-02-21 20:05:03
  * @Description: 项目基础配置
  */
 const path = require("path");
+
 const resolve = dir => {
-  return path.resolve(__dirname, dir);
+  return path.resolve(__dirname, "../", dir);
 };
 module.exports = {
-  base: {
-    host: "",
-    port: 3000,
-    historyMode: true,
-    staticDir: resolve("../static")
-  },
-  db: {
-    useMongodb: true
-  },
+  base: require("./default"),
   koaBody: {
     multipart: true,
     formidable: {

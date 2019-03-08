@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2018-12-11 20:21:34
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-02-11 12:50:15
+ * @LastEditTime: 2019-02-21 20:15:21
  * @Description: 基于axios的服务端请求客户端封装,
  */
 
@@ -11,16 +11,12 @@ const config = require("../../config");
 
 const QS = require("qs");
 
-const http = axios.create({
-  baseURL: config.api
-});
-
 const request = axios.create({
   baseURL: config.api
 });
 
 //请求拦截
-axios.interceptors.request.use(config => {
+request.interceptors.request.use(config => {
   console.log("request", {
     method: config.method,
     url: config.url,
@@ -29,8 +25,9 @@ axios.interceptors.request.use(config => {
   });
   return config;
 });
+
 // 响应拦截;
-axios.interceptors.response.use(response => {
+request.interceptors.response.use(response => {
   console.log("response", {
     method: response.config.method,
     url: response.config.url,
@@ -40,16 +37,10 @@ axios.interceptors.response.use(response => {
   return response;
 });
 
-function methodMap(ctx) {
-  const HTTP = axios.create({
-    baseURL: config.api
-  });
-}
-
 module.exports = {
-  http: http,
+  request: request,
   $get: function(url, params, config = {}) {
-    return http
+    return request
       .get(url, Object.assign({ params: params }, config))
       .then(res => {
         return [null, res.data];
@@ -59,7 +50,7 @@ module.exports = {
       });
   },
   $post: function(url, params, config = {}) {
-    return http.post(url, params, config).then(
+    return request.post(url, params, config).then(
       res => {
         return [null, res.data];
       },
@@ -70,7 +61,7 @@ module.exports = {
     );
   },
   $delete: function(url, params, config = {}) {
-    return http
+    return request
       .delete(url, Object.assign({ params: params }, config))
       .then(res => {
         return [null, res];
@@ -80,7 +71,7 @@ module.exports = {
       });
   },
   $put: function(url, params, config = {}) {
-    return http
+    return request
       .put(url, QS.stringify(params), config)
       .then(res => {
         return [null, res.data];
