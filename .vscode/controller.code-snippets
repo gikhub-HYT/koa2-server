@@ -51,5 +51,17 @@
       "const ${modelName}Model=mongoose.model('${modelName}')"
     ],
     "description": "import a mongoModel"
+  },
+  "explain": {
+    "prefix": "p",
+    "body": [
+      "/***********",
+      "* @Describtion:",
+      "* @params",
+      "* @return",
+      "*",
+      "***************/"
+    ],
+    "description": "import a mongoModel"
   }
 }
