@@ -4,8 +4,8 @@
   "description": "a webServer based koa2",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --inspect src/app.js ",
-    "test": "cross-env NODE_ENV=test nodemon --inspect src/app.js ",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect src/app.js --exitcrash ",
+    "test": "cross-env NODE_ENV=test nodemon --inspect src/app.js --exitcrash",
     "start": "pm2 start ./pm2.config.js && pm2 save ",
     "restart": "pm2 restart ./pm2.config.js",
     "reload": "pm2 reload ./pm2.config.js",
@@ -24,9 +24,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "ioredis": "^4.2.0",
+    "jsonwebtoken": "^8.5.0",
     "koa": "^2.6.2",
     "koa-body": "^4.0.6",
     "koa-cors": "0.0.16",
+    "koa-jwt": "^3.5.1",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3",
     "koa-views": "^6.1.4",
