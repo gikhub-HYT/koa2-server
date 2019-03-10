@@ -1,7 +1,7 @@
 const path = require("path");
 const log4js = require("log4js");
 // 日志输出的目录
-let baseLogPath = path.resolve(__dirname, "../../logs");
+let baseLogPath = path.resolve(__dirname, "../../../logs");
 //错误日志目录
 let errorPath = "/error";
 //错误日志文件名称
@@ -51,19 +51,13 @@ module.exports = log4js.configure({
     },
     resLogger: {
       level: "info",
-      appenders: ["response"],
+      appenders: ["response"]
     },
     errorLogger: {
       level: "error",
-      appenders: ["error"],
-    },
+      appenders: ["error"]
+    }
   },
   pm2: true,
   pm2InstanceVar: "INSTANCE_ID"
 });
-
-
-
-
-
-
