@@ -3,9 +3,9 @@
  * @LastEditors: yongtian.hong
  * @Description: 模块模板
  * @Date: 2019-02-20 19:33:27
- * @LastEditTime: 2019-02-21 19:49:34
+ * @LastEditTime: 2019-05-19 11:09:56
  */
-const modelTemplate = function(moduleName) {
+const modelTemplate = function (moduleName) {
   return `
   const mongoose = require("mongoose");
   const Schema = mongoose.Schema;
@@ -14,7 +14,7 @@ const modelTemplate = function(moduleName) {
   `;
 };
 
-const controllerTemplate = function(moduleName) {
+const controllerTemplate = function (moduleName) {
   return ` 
   const ${moduleName}Service=require("./${moduleName}.service");
   exports.${moduleName} = {
@@ -26,7 +26,7 @@ const controllerTemplate = function(moduleName) {
   };`;
 };
 
-const serviceTemplate = function(moduleName) {
+const serviceTemplate = function (moduleName) {
   return `
   const ${moduleName}Model=require("./${moduleName}.model");
   class ${moduleName}Service{};
