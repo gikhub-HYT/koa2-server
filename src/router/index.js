@@ -18,6 +18,8 @@ function setController(mapping, moduleName) {
   let controller = mapping["controller"];
   if (["put", "post", "delete", "get", "patch"].includes(method)) {
     router[method](path, controller);
+  } else if (!method) {
+    console.error(`the field method in module ${moduleName} can not be empty!`);
   } else {
     console.error(`invalid method: ${method}`);
   }
@@ -36,24 +38,31 @@ function routerMap(mappings, filename) {
 }
 
 // 添加控制器
-function addControllers(modulesPath) {
-  let basePath = resolve(modulesPath);
-  let modules = fs.readdirSync(basePath);
-  for (let module_name of modules) {
-    let dirPath = basePath + "/" + module_name;
-    files = fs.readdirSync(dirPath);
-    //过滤取出所有的模块的控制器文件
+function addControllers(targetPath) {
+
+  let modulesPath = resolve(targetPath);
+
+  let modules = fs.readdirSync(modulesPath);
+
+  Object.keys(modules).forEach((key) => {
+    let module_name = modules[key];
+    let modulePath = path.resolve(modulesPath, module_name);
+    files = fs.readdirSync(modulePath);
+    //过滤取出每个模块的所有模块的控制器文件
     let controller_js_files = files.filter(f => {
       return f.endsWith("controller.js");
     });
+    // 读取模块所有的控制器文件
     for (let js_file of controller_js_files) {
-      let mapping = require(dirPath + "/" + js_file);
+      let mapping = require(`${path.resolve(modulePath, js_file)}`);
+      console.log("mapping", mapping);
       routerMap(mapping, module_name);
+
     }
-  }
+  })
 }
 
-module.exports = function(dir) {
+module.exports = function (dir) {
   let startTime = new Date();
   let modules_dir = dir || "modules";
   addControllers(modules_dir);
