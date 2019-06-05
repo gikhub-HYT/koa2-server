@@ -4,7 +4,7 @@
   "description": "a webServer based koa2",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development pm2 start src/app.js ",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect src/app.js ",
     "test": "cross-env NODE_ENV=test nodemon --inspect src/app.js --exitcrash",
     "start": "pm2 start  src/app.js",
     "restart": "pm2 restart src/app.js",
@@ -34,7 +34,7 @@
     "koa-views": "^6.1.4",
     "log4js": "^3.0.6",
     "mongoose": "^5.4.11",
-    "pm2": "^3.2.2",
+    "pm2": "^3.5.1",
     "pm2-intercom": "^1.0.0",
     "qs": "^6.6.0",
     "winston": "^3.1.0",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
-    "nodemon": "^1.18.7",
-    "lazy-creator": "^1.0.0"
+    "lazy-creator": "^1.0.0",
+    "nodemon": "^1.18.7"
   }
 }
