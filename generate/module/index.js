@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-20 19:33:27
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-05-19 23:09:48
+ * @LastEditTime: 2019-06-01 14:38:01
  * @Description: 
  */
 // index.js
@@ -25,6 +25,7 @@ lazyCreator
     ctx.generateFile(targetPath, `${inputName}.controller.js`, controllerTemplate(inputName));
     ctx.generateFile(targetPath, `${inputName}.service.js`, serviceTemplate(inputName));
     ctx.generateFile(targetPath, `${inputName}.model.js`, modelTemplate(inputName));
+    ctx.log.success(`创建${inputName}模块成功`)
   })
 
 

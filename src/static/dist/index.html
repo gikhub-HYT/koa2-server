@@ -140,15 +140,11 @@
             });
         };
         $scope.login = function() {
-          $http
-            .get("/api/user/login", {
-              params: $scope.hero
-            })
-            .then(function(result) {
-              $scope.data = result.data.data;
-              $scope.msg = result.data.msg;
-              console.log("data", result);
-            });
+          $http.post("/api/user/login", $scope.hero).then(function(result) {
+            $scope.data = result.data.data;
+            $scope.msg = result.data.msg;
+            console.log("data", result);
+          });
         };
         $scope.modify = function() {
           $http

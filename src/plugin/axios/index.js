@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2018-12-11 20:21:34
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-03-25 00:22:13
+ * @LastEditTime: 2019-03-25 00:21:48
  * @Description: 基于axios的服务端请求客户端封装,
  */
 
@@ -11,9 +11,7 @@ const config = require("../../config");
 
 const QS = require("qs");
 
-const request = axios.create({
-    // baseURL: config.api
-});
+const request = axios.create();
 
 //请求拦截
 request.interceptors.request.use(config => {

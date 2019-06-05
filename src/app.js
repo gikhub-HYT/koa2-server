@@ -2,7 +2,7 @@ const Koa = require("koa");
 const koaBody = require("koa-body");
 const static = require("koa-static");
 const cors = require("koa-cors");
-const config = require("./config/default");
+const config = require("./config");
 const historyMode = require("./middlewares/historyMode");
 const mongoDb = require("./db/connect");
 // const sessionStore = require("./middlewares/sessionStore");
@@ -13,9 +13,9 @@ const app = new Koa();
 
 //控制是否启用mongodb
 if (config.useMongodb) {
-  mongoDb.start(function() {
-    console.log("数据库连接成功!");
-  });
+    mongoDb.start(function () {
+        console.log("数据库连接成功!");
+    });
 }
 // 拓展context
 contextExtend(app);
@@ -27,7 +27,7 @@ app.use(cors());
 app.use(koaBody(config.koaBody));
 // 支持前端history模式
 if (config.useHistoryMode) {
-  app.use(historyMode({ whiteList: ["/api"] }));
+    app.use(historyMode({ whiteList: ["/api"] }));
 }
 // 配置静态资源文件路径
 app.use(static(config.staticDir));
