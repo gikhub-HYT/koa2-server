@@ -3,7 +3,7 @@
  * @LastEditors: yongtian.hong
  * @Description: 模块模板
  * @Date: 2019-02-20 19:33:27
- * @LastEditTime: 2019-05-19 11:09:56
+ * @LastEditTime: 2019-07-20 20:04:48
  */
 const modelTemplate = function (moduleName) {
   return `
@@ -28,7 +28,7 @@ const controllerTemplate = function (moduleName) {
 
 const serviceTemplate = function (moduleName) {
   return `
-  const ${moduleName}Model=require("./${moduleName}.model");
+  const ${moduleName}Model=importModel(${moduleName});
   class ${moduleName}Service{};
   module.exports=new ${moduleName}Service()`;
 };
