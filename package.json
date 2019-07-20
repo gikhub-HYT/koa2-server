@@ -4,8 +4,8 @@
   "description": "a webServer based koa2",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --inspect src/app.js ",
-    "test": "cross-env NODE_ENV=test nodemon --inspect src/app.js --exitcrash",
+    "dev": "cross-env NODE_ENV=development nodemon   src/app.js ",
+    "test": "cross-env NODE_ENV=test nodemon   src/app.js --exitcrash",
     "start": "pm2 start  src/app.js",
     "restart": "pm2 restart src/app.js",
     "reload": "pm2 reload ./pm2.config.js",
