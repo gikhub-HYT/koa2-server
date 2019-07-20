@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-09 21:06:21
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-04-07 16:06:24
+ * @LastEditTime: 2019-06-05 21:01:54
  * @Description: ctx对象拓展
  */
 
@@ -14,12 +14,13 @@ let Extends = {
     // http: require("../../plugin/axios")
 };
 // 不挂载到context的白名单
-let whiteList = ["index.js", "model.js", "http.js"];
+let whiteList = ["index.js", "http.js", 'model.js'];
 
+// 
 function loadExtendFiles() {
     let files = fs.readdirSync(__dirname);
     // 过滤掉白名单中的拓展
-    files = files.filter(function(file) {
+    files = files.filter(function (file) {
         if (!whiteList.includes(file)) return file;
     });
     for (let file of files) {
@@ -39,7 +40,7 @@ function contextExtend(app, targetObj) {
 loadExtendFiles();
 
 //对外暴露拓展函数
-module.exports = function(app) {
+module.exports = function (app) {
     for (let target in Extends) {
         contextExtend(app, Extends[target]);
     }
