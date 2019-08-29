@@ -2,7 +2,7 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-09 21:06:21
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-06-05 21:01:54
+ * @LastEditTime: 2019-06-07 23:47:33
  * @Description: ctx对象拓展
  */
 
@@ -14,7 +14,7 @@ let Extends = {
     // http: require("../../plugin/axios")
 };
 // 不挂载到context的白名单
-let whiteList = ["index.js", "http.js", 'model.js'];
+let whiteList = ["index.js", "http.js"];
 
 // 
 function loadExtendFiles() {

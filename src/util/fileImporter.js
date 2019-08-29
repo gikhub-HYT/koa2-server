@@ -15,3 +15,8 @@ global.importPlugin = function (pluginName) {
 global.importMiddlewares = function (pluginName) {
     return require(path.resolve(process.cwd(), `src/middlewares/${pluginName}`))
 }
+
+global.importService = function (serviceName) {
+    return require(path.resolve(process.cwd(), `src/modules/${serviceName}.service.js`))
+
+}

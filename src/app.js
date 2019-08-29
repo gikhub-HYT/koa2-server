@@ -1,13 +1,17 @@
+
+
+require('./util/fileImporter');
+
 const Koa = require("koa");
 const koaBody = require("koa-body");
 const static = require("koa-static");
 const cors = require("koa-cors");
 const config = require("./config");
-const historyMode = require("./middlewares/historyMode");
+const historyMode = importMiddlewares("historyMode");
 const mongoDb = require("./db/connect");
 // const sessionStore = require("./middlewares/sessionStore");
-const requestHandle = require("./middlewares/requestHandle");
-const errorHandle = require("./middlewares/errorHandle");
+const requestHandle = importMiddlewares("requestHandle");
+const errorHandle = importMiddlewares("errorHandle");
 const contextExtend = require("./extend/context");
 const app = new Koa();
 

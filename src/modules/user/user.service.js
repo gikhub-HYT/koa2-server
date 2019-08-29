@@ -2,11 +2,12 @@
  * @Author: yongtian.hong
  * @Date: 2019-02-09 21:46:23
  * @LastEditors: yongtian.hong
- * @LastEditTime: 2019-06-03 09:29:10
+ * @LastEditTime: 2019-07-20 20:00:55
  * @Description:
  */
-const userModel = require("./user.model");
-const jwtService = require("../../plugin/jwt");
+
+const userModel = importModel("user");
+const jwtService = importPlugin("jwt");
 
 class User {
     constructor() {
@@ -39,9 +40,11 @@ class User {
      ***************/
     login(ctx) {
 
-        const { name, psw } = ctx.params;
 
-        const token = jwtService.createToken({ name: "hty", id: 1314 });
+
+        const token = jwtService.createToken();
+
+        return token;
 
         // ctx.body = token;
         // const user = new userModel({ name: name });
