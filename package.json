@@ -36,7 +36,7 @@
     "mongoose": "^5.4.11",
     "pm2": "^3.5.1",
     "pm2-intercom": "^1.0.0",
-    "qs": "^6.6.0",
+    "qs": "^6.6.1",
     "winston": "^3.1.0",
     "winston-daily-rotate-file": "^3.5.1"
   },
